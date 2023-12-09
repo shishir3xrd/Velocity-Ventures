@@ -212,7 +212,9 @@ def order_status():
             message = "Please wait for confirmation."
         cart_items = user.get('cart', {})
         total_quantity = calculate_total_cart_quantity(cart_items)
-        return render_template("order_status.html", message=message,total_quantity=total_quantity)  #total_quantity=total_quantity
+        admin_cart_collection = mongo.db.adminCart
+        all_cart_items = admin_cart_collection.find({"user_id": user_id})
+        return render_template("order_status.html", message=message,total_quantity=total_quantity, cart_items = all_cart_items)  #total_quantity=total_quantity
     
     return "Order data not found"
 
@@ -530,6 +532,25 @@ def checkout():
 
     return jsonify({"success": True, "message": "Order placed successfully"})
 
+
+@usercontrol.route("/all_orders", methods=['GET'])
+def all_orders():
+    mongo = PyMongo(current_app) 
+    if 'email' not in session:
+        return jsonify({"success": False, "message": "Unauthorized access"})
+
+    user = mongo.db.users.find_one({"email": session['email']})
+
+    if not user:
+        return jsonify({"success": False, "message": "User not found"})
+
+    user_id = user["_id"]
+    # user_id = ObjectId('65748c8fd652bdad1e0ccab1')
+    #Retrieve cart data from the adminCart collection
+    admin_cart_collection = mongo.db.adminCart
+    cart_items = admin_cart_collection.find({"user_id": ObjectId(user_id)}) 
+    # return jsonify(cart_items) 
+    return render_template("order_status.html", cart_items=cart_items)
 
 
 # ... (your existing code)

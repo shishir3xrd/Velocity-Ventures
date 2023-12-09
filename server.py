@@ -8,7 +8,7 @@ from src.controllers.user import usercontrol
 from urllib.parse import quote_plus
 from flask_socketio import SocketIO
 from flask_mail import Mail,Message
-from src.utils import send_verification_email
+from src.utils import send_verification_email 
 app = Flask(__name__)
 
 app.config['MAIL_SERVER'] = 'devzhive.com'

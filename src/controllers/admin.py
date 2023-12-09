@@ -236,7 +236,7 @@ def admin_confirm_servicing():
         "status": "Accepted for Servicing"
     }})
     servicing_request = servicing_request_collection.find_one({"_id":ObjectId(servicing_id)})
-    send_servicing_email(mail, servicing_request['user'], "Accepted for Servicing", servicing_request['status'])
+    send_servicing_email(mail, servicing_request['user'], "Accepted for Servicing", servicing_request['submitted_chassis_number'])
     servicing_requests = servicing_request_collection.find()
     # Process cart data to include additional details
     _servicing_requests = []

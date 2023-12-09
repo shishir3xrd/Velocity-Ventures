@@ -66,7 +66,55 @@
     <p>{{ message }}</p>
     <a href="{{ url_for('user.dashboard') }}">Back</a>
 </div>
-
+<section class="py-5 mt-5">
+  <div class="row pt-5">
+      <div class="col-md-8 text-center text-md-start mx-auto">
+          <div class="text-center">
+              <h1 class="display-4 fw-bold mb-5"></h1>
+              <h1 class="display-6 fw-bold mb-5">Order History</h1>
+          </div>
+      </div>
+      <div class="col-12 col-lg-10 mx-auto">
+          <div class="text-center position-relative">
+              <div class="container">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>Status</th>
+                              <!-- <th>Product list</th> -->
+                              <th>Card Info</th>
+                              <th>Payment Method</th>
+                              <th>Total Amount</th>
+                          </tr>
+                      </thead>
+                      <!-- Inside your table body -->
+                            <tbody>
+                              {% for cart_item in cart_items %}
+                              <tr>
+                                  <td>{{ cart_item.status }}</td>
+                                  <!-- <td>
+                                      {% for product in cart_item.product_list %}
+                                      Product: {{ product.product_name }}<br>
+                                      {% endfor %}
+                                  </td> -->
+                                  <td>{% if cart_item.form_data.get('card_number', '') != "" %}
+                                      {{ cart_item.form_data.card_number }}
+                                  {% else %}
+                                      No data given
+                                  {% endif %}</td>
+                                  <td>{{ cart_item.payment_type }}</td>
+                                  <td>{{ cart_item.total_amount }}TK</td>
+                                  
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+  
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
