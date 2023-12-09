@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Step Verification</title>
+</head>
+<body>
+    <p>Dear {{ user.name }},</p>
+
+    <p>Two-Step Verification adds an extra layer of security to your account by requiring a verification code in addition to your password.</p>
+    <p>Here is your email verification link. Please click on the link to login</p>
+
+    <p><a href="http://127.0.0.1:5000/{{ url_for('two_step_verification') }}?token={{token}}">Login now</a></p>
+    <p>Best regards,<br>
+    Velocity Ventures</p>
+</body>
+</html>

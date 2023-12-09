@@ -1,0 +1,76 @@
+
+  /* Style for the quick view pop-up */
+
+  /* Style for the left column (Product Photo) */
+  #quickViewPhoto {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Style for the right column (Product Details) */
+  #quickViewName {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: black; /* Set the font color */
+    margin-top: 10px;
+  }
+
+  #quickViewDescription {
+    font-size: 16px;
+    color: black; /* Set the font color */
+  }
+
+  #quickViewPrice {
+    font-size: 20px;
+    font-weight: bold;
+    color: black; /* Set the font color */
+  }
+
+  /* Style for the Quantity Input */
+  .input-group-text {
+    background-color: #f22e18; /* Set the background color */
+    color: white; /* Set the font color */
+  }
+
+  /* Style for the Add to Cart and Close Buttons */
+  .btn-primary {
+    background-color: #dbcc8f; /* Set the background color */
+    border-color: #dbcc8f; /* Set the border color */
+  }
+
+  .btn-primary:hover {
+    background-color: #bbaa66; /* Set the background color on hover */
+    border-color: #bbaa66; /* Set the border color on hover */
+  }
+
+.btn-secondary {
+    background-color: blue; /* Set the background color of the button */
+    color: white; /* Set the text color of the button */
+  }
+
+  .btn-secondary:hover {
+    background-color: #b0b0b0; /* Set the background color on hover */
+    border-color: #b0b0b0; /* Set the border color on hover */
+  }
+
+
+/* send success message of add cart */
+
+.message-container {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.success {
+  background-color: #4CAF50; /* Green background */
+}
+
+.error {
+  background-color: #f44336; /* Red background */
+}
+

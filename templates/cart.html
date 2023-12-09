@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='../static/img/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="../static/css/cart/cart1.css">
+</head>
+<body>
+    <section class="h-100 h-custom" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card">
+                <div class="card-body p-4">
+      
+                  <div class="row">
+      
+                    <div class="col-lg-7">
+                        <h5 class="mb-3 custom-h5"><a href="{{ url_for('user.dashboard') }}" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+
+                      <hr>
+      
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                          <p class="mb-1">Shopping cart</p>
+                          <p class="mb-0">You have {{ total_quantity }}  items in your cart</p>
+                        </div>
+                        <div>
+                          <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
+                              class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
+                        </div>
+                      </div>
+                      {% for product_id, cart_item in cart_items.items() %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div>
+                                            <img src="{{ url_for('static', filename=cart_item.photo_path)}}" alt="Product Image" width="50">
+                                        </div>
+                                        <div class="ms-3">
+                                            <h5>{{ cart_item.product_modelName }}</h5>
+                                            <p class="small mb-0">{{ cart_item.color }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div style="width: 50px;">
+                                            <h5 class="fw-normal mb-0">{{ cart_item.quantity }}</h5>
+                                        </div>
+                                        <div style="width: 80px;">
+                                            <h5 class="mb-0">${{ cart_item.product_price }}</h5>
+                                        </div>
+                                        <a  href="#" style="color: #cecece;" data-product-id="{{ product_id }}" class="delete-product"><i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+      
+                    <div class="col-lg-5">
+      
+                        <div class="card custom-bg-color text-white rounded-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="col-md-6">
+                                    <h5 class="mb-0">Payment type</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select form-select-lg mb-4 mt-4" name="payment_type">
+                                      <option value="cash">Cash on Delivery</option>
+                                      <option value="card">Card Payment</option>
+                                    </select>
+                                </div>
+                            </div>
+                          <p class="small mb-2">Card Information</p>
+                            
+                          <form id="checkout-form" class="mt-4">
+                            <!-- ... Other form inputs ... -->
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="typeName" name="cardholder_name" class="form-control form-control-lg"
+                                       placeholder="Cardholder's Name" />
+                                <label class="form-label" for="typeName">Cardholder's Name</label>
+                            </div>
+                        
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="typeText" name="card_number" class="form-control form-control-lg"
+                                       placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                                <label class="form-label" for="typeText">Card Number</label>
+                            </div>
+                        
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-outline form-white">
+                                        <input type="text" id="typeExp" name="expiration" class="form-control form-control-lg"
+                                               placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" />
+                                        <label class="form-label" for="typeExp">Expiration</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-outline form-white">
+                                        <input type="password" id="typeCvv" name="cvv" class="form-control form-control-lg"
+                                               placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                                        <label class="form-label" for="typeCvv">CVV</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ... Other form inputs ... -->
+                        </form>
+                        
+      
+                          <!-- Rest of the payment details form -->
+      
+                          <hr class="my-4">
+      
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2">Subtotal</p>
+                            <p class="mb-2">${{ cart_total }}</p>
+                          </div>
+      
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2">Shipping charge</p>
+                            <p class="mb-2">${{ shipping_charge }}</p>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-4">
+                                <p class="mb-2">Total</p>
+                                <p id="totalAmount" class="mb-2">${{ total_amount }}</p>
+                            </div>
+                            
+                            <button type="button" id="checkout-btn" class="btn btn-info btn-block btn-lg">
+                              <div class="d-flex justify-content-between">
+                                  <span>${{ total_amount }}</span>
+                                  <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                              </div>
+                            </button>
+      
+                        </div>
+                      </div>
+      
+                    </div>
+      
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../static/js/delete_item.js"></script>
+<script src="../static/js/checkout.js"></script>
+</html>

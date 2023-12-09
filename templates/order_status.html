@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Velocity Ventures order status</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='../static/img/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/animate.css">
+    
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/magnific-popup.css">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/aos.css">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/ionicons.min.css">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/flaticon.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/icomoon.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/style.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/product.css">
+    <link href="../static/css/servicing.css" rel="stylesheet" />
+    <link href="../static/css/orderStatus.css" rel="stylesheet" />
+
+  </head>
+  <body class="goto-here">
+  
+    <nav class="navbar navbar-expand-lg navbar-white ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="{{ url_for('user.dashboard') }}"><img class="one-third order-md-last img-fluid" src="../static/img/logo.png" alt=""></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+	
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a href="{{ url_for('user.dashboard') }}" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="{{ url_for('user.bikes') }}" class="nav-link">Bikes</a></li>
+					<li class="nav-item"><a href="{{ url_for('user.service_form') }}" class="nav-link">Servicing</a></li>
+					<li class="nav-item"><a href="{{ url_for('user.accessories') }}" class="nav-link">Accessories</a></li>
+					<li class="nav-item active"><a href="{{ url_for('user.order_status') }}" class="nav-link">Order Status</a></li>
+					<li class="nav-item cta cta-colored"><a href="{{ url_for('user.cart') }}" class="nav-link"><span class="icon-shopping_cart"></span>[{{total_quantity}}]</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="icon-user"></span>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="{{ url_for('user.profile_setting') }}">Profile Settings</a>
+							<a class="dropdown-item" href="{{ url_for('user.logout') }}">Logout</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+  <img src="../static/img/flagship.jpeg" alt="bike Picture" class="bike-picture">
+  <div class="form-container">
+    <h1>Order Status</h1>
+    <p>{{ message }}</p>
+    <a href="{{ url_for('user.dashboard') }}">Back</a>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

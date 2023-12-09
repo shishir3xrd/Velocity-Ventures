@@ -1,0 +1,35 @@
+
+    .form-container {
+        
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 50px;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+    }
+
+    .form-container h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .form-container p {
+        margin-bottom: 20px;
+    }
+
+    .form-container a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .form-container a:hover {
+        background-color: #0056b3;
+    }

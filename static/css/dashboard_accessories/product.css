@@ -1,0 +1,62 @@
+.navbar-nav .nav-link {
+    color: #fff; /* Set the text color to white */
+    padding: 0.5rem 1rem; /* Add some padding to the links */
+}
+
+/* Apply a background color to the active link */
+.navbar-nav .nav-item.active .nav-link {
+    background-color: #0056b3; /* Replace this with the color you want for the active link background */
+    border-radius: 5px; /* Add some border-radius for a rounded appearance */
+}
+
+/* Apply a different background color when hovering over a link */
+
+
+/* Style the cart icon to make it stand out */
+.navbar-nav .cta-colored .icon-shopping_cart {
+    color: #dbcc8f; /* Replace this with the color you want for the cart icon */
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+/* Adjust the logout button style */
+.navbar-nav .btn-logout {
+    color: #dbcc8f; /* Replace this with the color you want for the logout button */
+    border: 1px solid #dbcc8f; /* Add a border to the button */
+    border-radius: 5px; /* Add some border-radius for a rounded appearance */
+    padding: 0.3rem 1rem; /* Add some padding to the button */
+    margin-left: 1rem; /* Add some space between the last link and the logout button */
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px; /* Add border-radius for a rounded appearance */
+}
+
+/* Apply a background color to the active link */
+.navbar-nav .nav-item.active .nav-link {
+    background-color: #dbcc8f;
+}
+
+/* Apply a different background color and round the corners when hovering over a link */
+.navbar-nav .nav-link:hover {
+    background-color: #f5f3ebbc;
+    border-radius: 5px; /* Add border-radius for a rounded appearance */
+}
+
+/* Style the cart icon to make it stand out */
+.navbar-nav .cta-colored .icon-shopping_cart {
+    color: #dbcc8f;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+/* Adjust the logout button style */
+.navbar-nav .btn-logout {
+    color: #dbcc8f;
+    border: 1px solid #dbcc8f;
+    border-radius: 5px;
+    padding: 0.3rem 1rem;
+    margin-left: 1rem;
+}

@@ -1,0 +1,56 @@
+/* Reset some default styles and set a base font */
+body, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Global styles */
+  body {
+    background-color: #f9f9f9;
+    color: #24285b;
+    line-height: 1.6;
+    margin-top: 80px; /* Add space for the fixed navbar */
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    background-color: transparent;
+    transition: background-color 0.3s;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #24285b;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #007bff;
+  }
+  
+  /* Change navbar color on scroll */
+  .navbar-scrolled {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Content styles */
+  .Dashboard-photo {
+    padding: 150px;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      flex-direction: column;
+    }
+    .navbar-toggler {
+      order: -1;
+    }
+  }
+  

@@ -1,0 +1,115 @@
+<style>
+
+    .Dashboard-photo{
+        padding: 150px;
+    
+    }
+    
+     .counters{
+        padding: 10px;
+        margin-top: 10px;
+        background: #C1C5C8;
+        border: 10px;
+        border-radius: 0.8em;
+        box-shadow: 0 0.5em 1em rgba(36,40,91);
+        position: center;
+        width:100%;
+    
+     }
+    
+    </style>
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Admin Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="/static/img/brands/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css?h=97fdfa31c346c923d830c27d591ac4aa">
+    <link rel="stylesheet" href="/static/css/Raleway.css?h=0ec1a47909b38d61779c28ccc34e194d">
+    <link rel="stylesheet" href="../static/css/admin_dashboard.css">
+    <link rel="stylesheet" href="../static/css/admin_nav.css">
+    </head>
+    <body>
+    <!-- Sidebar -->
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span><a href="/home"><img src="../static/img/logo.png" width="185" height="79" style="width: 190px;height: 79px;"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.admin_dashboard') }}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.admin_addproduct') }}">Add Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.admin_Manproduct') }}">Manage Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.admin_Servicing') }}">Manage Servicing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.admin_Mancart') }}">Manage Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.admin_Manuser') }}">Manage User</a></li>
+                    
+                  
+              </ul><a class="btn btn-primary shadow" role="button" href="{{ url_for('user.logout') }}">Logout</a>
+          </div>
+      </div>
+  </nav>
+
+<div class= 'Dashboard-photo'>
+    <div class="main-content">
+        <div class="form-box">
+            <h2>Add Product</h2>
+            <form action="{{ url_for('admin.process_admin_form') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-row">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" name="product-name" required>
+                </div>
+                <div class="form-row">
+                    <label for="brand-name">Brand Name:</label>
+                    <input type="text" id="brand-name" name="brand-name" required>
+                </div>
+                <div class="form-row">
+                    <label for="model-name">Model Name:</label>
+                    <input type="text" id="model-name" name="model-name" required>
+                </div>
+                <div class="form-row">
+                    <label for="product-description">Product Description:</label>
+                    <textarea id="product-description" name="product-description" rows="6" required></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+                </div>
+                <div class="form-row">
+                    <label for="discount">Discount:</label>
+                    <input type="number" id="discount" name="discount" required>
+                </div>
+                <div class="form-row">
+                    <label for="color">Colors:</label>
+                    <input type="text" id="color" name="color" required>
+                </div>
+                <div class="form-row">
+                    <label for="warranty">Warranty:</label>
+                    <input type="text" id="warranty" name="warranty" required>
+                </div>
+                <div class="form-row">
+                    <label for="photo">Photo Upload:</label>
+                    <input type="file" id="photo" name="photo" required autocomplete="off" required onchange="loadFile(event)">
+                </div>
+                <div class="form-row">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+            <img id="output" width="500">
+            <script>
+                var loadFile = function (event){
+                var output = document.getElementById ('output');
+                output.src = URL.createObjectURL (event.target.files [0]);
+                output.onload - function (){
+                URL.revokeObjectURL (output.src)
+                }
+            };
+            </script>
+        </div>
+    </div>
+</div>
+
+    <!-- Main Content -->
+    
+</body>
+</html>

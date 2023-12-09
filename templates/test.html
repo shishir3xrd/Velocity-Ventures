@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Velocity Ventures</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='../static/img/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/animate.css">
+    
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/magnific-popup.css">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/aos.css">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/ionicons.min.css">
+
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/jquery.timepicker.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+    
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/flaticon.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/icomoon.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/style.css">
+    <link rel="stylesheet" href="../static/css/dashboard_accessories/product.css">
+    <link rel="stylesheet" href="../static/css/quick_view.css">
+  </head>
+  <body class="goto-here">
+    <div class="py-1 bg-black">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+					    <div class="col-md pr-4 d-flex topper align-items-center" align="middle">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center" align="middle"><span class="icon-human"></span></div>
+						    <span class="text">{{random_accessories_quote}}, {{ name }} </span>
+					    </div>
+					    
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="{{ url_for('user.dashboard') }}"><img class="one-third order-md-last img-fluid" src="../static/img/logo.png" alt=""></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+	
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a href="{{ url_for('user.dashboard') }}" class="nav-link">Home</a></li>
+					<li class="nav-item {% if request.endpoint == 'user.bikes' %}active{% endif %}">
+                        <a href="{{ url_for('user.bikes') }}" class="nav-link">Bikes</a></li>
+					<li class="nav-item"><a href="{{ url_for('user.service_form') }}" class="nav-link">Servicing</a></li>
+					<li class="nav-item"><a href="{{ url_for('user.accessories') }}" class="nav-link">Accessories</a></li>
+					<li class="nav-item"><a href="{{ url_for('user.blog') }}" class="nav-link">Blog</a></li>
+					<li class="nav-item cta cta-colored"><a href="{{ url_for('user.cart') }}" class="nav-link"><span class="icon-shopping_cart"></span>[{{ total_quantity }}]</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="icon-user"></span>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="{{ url_for('user.profile_setting') }}">Profile Settings</a>
+							<a onclick="return checker('{{ name }}')" class="dropdown-item" href="{{ url_for('user.logout') }}">Logout</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+    <!-- END nav -->
+
+    <div class="hero-wrap hero-bread" style="background-image: url('../static/img/bike.jpeg');">
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+              <h1 class="mb-0 bread" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); color: #dbcc8f;">
+                Your ridining companion
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+            <!-- Products Section -->
+            <div class="col-md-8 col-lg-10 order-md-last">
+                <!-- ... your other HTML code ... -->
+
+                      <div class="row">
+                        {% for bike_product in bike_products %}
+                        <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+                            <div class="product d-flex flex-column">
+                                <img class="img-fluid" src="{{ url_for('static', filename=bike_product.photo_path) }}" alt="{{ bike_product.product_name }}">
+                                <div class="overlay"></div>
+                                <div class="text py-3 pb-4 px-3">
+                                    <div class="d-flex">
+                                        <div class="cat">
+                                            <span>{{ bike_product.brand_name }}</span>
+                                        </div>
+                                    </div>
+                                    <h3><a href="#">{{ bike_product.model_name }}</a></h3>
+                                    <div class="pricing">
+                                      <div class="price-and-discount">
+                                          <p class="price"><span>Price: {{ bike_product.price }}TK</span></p>
+                                          {% if bike_product.discount %}
+                                          <p class="discount"><span>Discount: {{ bike_product.discount }}%</span></p>
+                                          {% endif %}
+                                      </div>
+                                    </div>
+                                    {% if bike_product.color %}
+                                    <div class="color">
+                                        <p class="color"><span>Color: {{ bike_product.color }}</span></p>
+                                    </div>
+                                    {% endif %}
+                                    <p class="bottom-area d-flex px-3">
+                                          <a onclick="return addToCart('{{ bike_product._id }}')" href="#" class="add-to-cart text-center py-2 mr-1" 
+                                            data-product="{{ bike_product._id }}"
+                                            data-photo="{{ url_for('static', filename=bike_product.photo_path)}}"
+                                            data-name="{{ bike_product.model_name }}"
+                                            data-color="{{ bike_product.color }}"
+                                            data-discount="{{ bike_product.discount }}"
+                                            data-price="{{ bike_product.price }}"
+                                            data-description="{{ bike_product.product_description }}"
+                                            data-warranty="{{ bike_product.warranty }}">
+                                            Add to Cart<span><i class="ion-ios-add ml-1"></i></span></a>
+                                        <a href="#" class="quick-view-btn buy-now text-center py-2"
+                                            data-product="{{ bike_product._id }}"
+                                            data-photo="{{ url_for('static', filename=bike_product.photo_path)}}"
+                                            data-name="{{ bike_product.model_name }}"
+                                            data-price="{{ bike_product.price }}"
+                                            data-description="{{ bike_product.product_description }}"
+                                            data-warranty="{{ bike_product.warranty }}">
+                                            Quick View<span><i class="ion-ios-cart ml-1"></i></span>
+                                        </a>
+                    
+                                    </p>
+                                    <p class="description" style="color: red;">{{ bike_product.product_description }}</p>
+                                    <p class="warranty">Warranty: {{ bike_product.warranty }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- End of the loop -->
+                    </div>
+                    <!-- Pagination or any other content for the section -->
+                </div>
+                <!-- Sidebar Section -->
+<!-- Categories Section -->
+                <div class="col-md-4 col-lg-2">
+                    <div class="sidebar">
+                    <div class="sidebar-box-2">
+                        <h2 class="heading">Categories</h2>
+                        <div class="fancy-collapse-panel">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <!-- Bike Category -->
+                            <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingBike">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseBike" aria-expanded="true" aria-controls="collapseBike">Bike</a>
+                                </h4>
+                            </div>
+                            <div id="collapseBike" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBike">
+                                <div class="panel-body">
+                                <ul>
+                                    <li><a href="{{ url_for('user.accessories', category='yamaha') }}">Yamaha</a></li>
+                                    <li><a href="{{ url_for('user.accessories', category='honda') }}">Honda</a></li>
+                                    <li><a href="{{ url_for('user.accessories', category='bajaj') }}">Bajaj</a></li>
+                                    <li><a href="{{ url_for('user.accessories', category='suzuki') }}">Suzuki</a></li>
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Helmet Category -->
+                            <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingHelmet">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseHelmet" aria-expanded="true" aria-controls="collapseHelmet">Helmet</a>
+                                </h4>
+                            </div>
+                            <div id="collapseHelmet" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHelmet">
+                                <div class="panel-body">
+                                <ul>
+                                    <li><a href="{{ url_for('user.accessories', category='Steelbird') }}">Steelbird</a></li>
+                                    <li><a href="{{ url_for('user.accessories', category='vega') }}">Vega</a></li>
+                                    <!-- Add more helmet subcategories as needed -->
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Jacket Category -->
+                            <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingJacket">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseJacket" aria-expanded="true" aria-controls="collapseJacket">Jacket</a>
+                                </h4>
+                            </div>
+                            <div id="collapseJacket" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingJacket">
+                                <div class="panel-body">
+                                <ul>
+                                    <li><a href="{{ url_for('user.accessories', category='Rynox') }}">Rynox</a></li>
+                                    <li><a href="{{ url_for('user.accessories', category='Alpinestars') }}">Alpinestars</a></li>
+                                    <!-- Add more jacket subcategories as needed -->
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col text-center">
+                  <div class="block-27">
+                      <ul>
+                          {% for page_num in range(1, total_pages + 1) %}
+                              <li {% if page_num == current_page %}class="active"{% endif %}><a href="{{ url_for('user.bikes', page=page_num) }}">{{ page_num }}</a></li>
+                          {% endfor %}
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal fade" id="quickViewModal" tabindex="-1" role="dialog" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="row">
+                  <!-- Left Column: Product Photo -->
+                  <div class="col-lg-6">
+                    <img id="quickViewPhoto" src="" alt="">
+                  </div>
+                  <!-- Right Column: Product Details -->
+                  <div class="col-lg-6">
+                    <h2 id="quickViewName"></h2>
+                    <p id="quickViewDescription"></p>
+                    <p id="quickViewPrice"></p>
+                    <!-- Quantity Input -->
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Quantity</span>
+                      </div>
+                      <input type="number" class="form-control" value="1">
+                    </div>
+                    <!-- Add to Cart and Close Buttons -->
+                    <div class="d-flex justify-content-between">
+                      <button type="button" class="btn btn-primary">Add to Cart</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>                
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+      	<div class="row">
+      		<div class="mouse">
+						<a href="#" class="mouse-icon">
+							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+						</a>
+					</div>
+      	</div>
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Minishop</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Shop</a></li>
+                <li><a href="#" class="py-2 d-block">About</a></li>
+                <li><a href="#" class="py-2 d-block">Journal</a></li>
+                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="../static/js/dashboard_accessories/jquery.min.js"></script>
+  <script src="../static/js/dashboard_accessories/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../static/js/dashboard_accessories/popper.min.js"></script>
+  <script src="../static/js/dashboard_accessories/bootstrap.min.js"></script>
+  <script src="../static/js/dashboard_accessories/jquery.easing.1.3.js"></script>
+  <script src="../static/js/dashboard_accessories/jquery.waypoints.min.js"></script>
+  <script src="../static/js/dashboard_accessories/jquery.stellar.min.js"></script>
+  <script src="../static/js/dashboard_accessories/owl.carousel.min.js"></script>
+  <script src="../static/js/dashboard_accessories/jquery.magnific-popup.min.js"></script>
+  <script src="../static/js/dashboard_accessories/aos.js"></script>
+  <script src="../static/js/dashboard_accessories/jquery.animateNumber.min.js"></script>
+  <script src="../static/js/dashboard_accessories/bootstrap-datepicker.js"></script>
+  <script src="../static/js/dashboard_accessories/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="../static/js/dashboard_accessories/google-map.js"></script>
+  <script src="../static/js/dashboard_accessories/main.js"></script>
+  <script src="../static/js/quick_view.js"></script>
+  <script src="../static/js/cart.js"></script>
+  <script src="../static/js/alert.js"></script>
+  
+    
+  </body>
+</html>

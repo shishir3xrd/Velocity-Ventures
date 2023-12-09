@@ -1,0 +1,164 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+    padding-top: 200px;
+}
+
+.form-container {
+    position: relative;
+    background-color: #eff6a2;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 1000px; /* Increase the max-width to make the box wider */
+    width: 100%;
+    border-radius: 8px;
+    margin: 0 auto;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 99;
+}
+
+.bike-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    pointer-events: none; /* Prevent the image from interfering with form elements */
+}
+
+.form-container h1 {
+    color: black;
+    opacity: 1;
+    text-align: center;
+}
+
+.form-container p {
+    color: black;
+    opacity: 1;
+    text-align: center;
+}
+
+.form-container .text-danger {
+    color: red;
+    text-align: center;
+}
+
+.form-container form .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-container form .row .col-sm-4 {
+    flex: 0 0 calc(33.33% - 10px); /* Three items per row */
+}
+
+.form-container form .row .col-sm-12 {
+    flex-basis: 100%;
+}
+
+.form-container form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-container form input[type="text"],
+.form-container form input[type="date"],
+.form-container form select {
+    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.form-container form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px;  
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+.form-container form .text-center {
+    text-align: center;
+}
+
+.form-container form .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+}
+
+.form-container form .table th,
+.form-container form .table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.form-container form .table th {
+    background-color: #f9f9f9;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Update the button style for better visibility */
+.btn-container button {
+    padding: 12px 32px; /* Increase the padding for a larger button */
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-container button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.btn-container a {
+    padding: 12px 24px; /* Increase the padding for a larger button */
+    background-color: #f7f7f7;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-container a:hover {
+    background-color: #e3e3e3; /* Darker shade on hover */
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.ftco-navbar-light {
+    margin-bottom: 10px;
+}

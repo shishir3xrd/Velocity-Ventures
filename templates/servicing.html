@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocity Service Booking</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='../static/img/favicon.ico') }}">
+    <link href="../static/css/servicing.css" rel="stylesheet" />
+</head>
+<body>
+    <img src="../static/img/s2.jpeg" alt="bike Picture" class="bike-picture">
+    <div class="form-container">
+        <h1>Velocity Ventures serving Service Booking</h1>
+        <p>Please fill up the following form to book your service appointment.</p>
+        <p class="text-danger">** For accidental & quick services please visit directly**</p>
+
+        <form class="form" action="http://booking.yamahabd.com/online-booking" method="POST" autocomplete="off">
+            <input type="hidden" name="_token" value="JGU7nEzd02qqDncRhvpe9zHICN97aH7C3Yi6ufd1">
+
+            <!-- Auto-fill fields -->
+            <div class="row">
+                <div class="col-sm-4 mb-4">
+                    <label for="FullName">Full Name</label>
+                    <input type="text" name="FullName" id="FullName" required placeholder="Enter Full Name">
+                </div>
+                <div class="col-sm-4 mb-4">
+                    <label for="KmDone">Kilometers Done</label>
+                    <input type="text" name="KmDone" id="KmDone" required placeholder="Enter Kilometers Done">
+                </div>
+                <div class="col-sm-4 mb-4">
+                    <label for="MobileNo">Mobile No</label>
+                    <input type="text" name="MobileNo" id="MobileNo" required placeholder="Enter Mobile No">
+                </div>
+            </div>
+
+            <!-- Other form fields go here -->
+
+            <div class="row">
+                <div class="col-sm-4 mb-4">
+                    <label for="ProblemDetails">Problem Details</label>
+                    <input type="text" name="ProblemDetails" id="ProblemDetails" placeholder="Enter Problem Details">
+                </div>
+                <div class="col-sm-4 mb-4">
+                    <label for="Address">Address</label>
+                    <input type="text" name="Address" id="Address" required placeholder="Enter Address">
+                </div>
+                <div class="col-sm-4 mb-4">
+                    <label for="PreferredDate">Preferred Date</label>
+                    <input type="date" name="PreferredDate" id="PreferredDate" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 mb-4">
+                    <label for="BikeModel">Bike Model</label>
+                    <input type="text" name="BikeModel" id="BikeModel" required placeholder="Enter Bike Model">
+                </div>
+                <div class="col-sm-4 mb-4">
+                    <label for="PreferredLocation">Preferred Location</label>
+                    <select name="PreferredLocation" id="PreferredLocation" required>
+                        <option value="" selected>Select Preferred Location</option>
+                        <option value="mirpur">Mirpur</option>
+                        <option value="mohakhali">Mohakhali</option>
+                        <option value="mohammodpur">Mohammodpur</option>
+                        <option value="uttara">Uttara</option>
+                        <option value="dhanmondi">Dhanmondi</option>
+                    </select>
+                </div>
+                <div class="col-sm-4"></div> <!-- Empty column to make the last row align properly -->
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    
+                    <table class="table table-bordered table-sm text-nowrap table-responsive">
+                        <!-- Table content goes here -->
+                    </table>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <a href="dashboard.html">Back</a>
+                <button type="submit">Booking</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

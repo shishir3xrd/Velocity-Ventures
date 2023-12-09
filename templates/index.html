@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Velocity Ventures</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../static/css/index_style.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+
+        <!-- user login -->
+       <!-- Login Form -->
+       <div class="wrapper" id="loginPopup">
+        <span class="icon-close" onclick="closeLoginPopup()">
+          <i class="fa-solid fa-close"></i>
+        </span>
+        <div class="form-box login">
+          <h2>Login</h2>
+          <form action="/login" method="POST" onsubmit="return loginUser(event)">
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+              <input type="email" name="email" required>
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" name="password" required>
+              <label>Password</label>
+            </div>
+            {% if 'login_message' in session %}
+            <p>{{ session['login_message'] }}</p>
+            {% set _ = session.pop('login_message', None) %}
+            {% endif %}
+            <div class="remember-password">
+              <label><input type="checkbox">Remember me</label>
+              <a href="/forget_password">Forget password</a>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            <div class="login-register">
+              <p>Don't have an account? <a href="#registerPopup" class="register-link" onclick="openRegisterPopup()">Register</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    
+      <!-- Register Popup -->
+      <div class="wrapper" id="registerPopup">
+        <span class="icon-close" onclick="closeRegisterPopup()">
+          <i class="fa-solid fa-close"></i>
+        </span>
+        <div class="form-box register">
+          <h2>Register</h2>
+          <form action="/register" method="POST" onsubmit="return registerUser(event)">
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-user"></i></span>
+              <input type="text" name="name" required>
+              <label>Name</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+              <input type="email" name="email" required>
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><i class="fa-solid fa-mobile icon-certificate"></i></span>
+                <input type="text" name="nid" required>
+                <label>NID/Birth Certificate</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-mobile"></i></span>
+              <input type="text" name="mobile_number" required>
+              <label>Mobile Number</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+              <input type="text" name="address" required>
+              <label>Address</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-venus-mars"></i></span>
+              <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <label>Gender</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" name="password" required>
+              <label>Password</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" name="confirm_password" required>
+              <label>Confirm Password</label>
+            </div>
+            {% if 'registration_message' in session %}
+            <p>{{ session['registration_message'] }}</p>
+            {% set _ = session.pop('registration_message', None) %}
+            {% endif %}
+            <button type="submit" class="register-btn">Register</button>
+            <div class="login-register">
+              <p>Already have an account? <a href="#loginPopup" class="login-link" onclick="openLoginPopup()">Login</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+        
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <img class="logo" src="../static/img/logo.png" alt="Velocity venture" />
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">About</a></li>
+                        <li class="nav-item"><a class="nav-link" class="register-link" onclick="openRegisterPopup()" href="#registerPopup">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">Velocity ventures</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">WHERE THRILLS MEET QUALITY.</h2>
+                        <a class="btn btn-primary" onclick="openLoginPopup()" href="#loginPopup">Login</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        </div>
+        <!-- About-->
+        <section class="about-section text-center" id="home">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-white mb-4">Buy and service from the best</h2>
+                        <p class="text-white-50">
+                            At our bike shop, we are passionate about all things cycling. With a wide range 
+                            of top-notch bikes and accessories, we're dedicated to providing riders of all levels with 
+                            the tools they need to conquer any terrain and embrace their love for two wheels.
+                        </p>
+                    </div>
+                </div>
+                <img class="img-fluid" src="../static/img/s2.jpg" alt="..." />
+            </div>
+        </section>
+        <!-- Projects-->
+        <section class="projects-section bg-light" id="projects">
+            <div class="container px-4 px-lg-5">
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="../static/img/bike2.jpeg" alt="..." /></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Rent Your Dream Bike</h4>
+                            <p class="text-black-50 mb-0">Experience the freedom of the open road by renting your dream bike from our shop. Whether you're seeking an adrenaline-pumping mountain bike or a sleek road bike for scenic rides,
+                                 our rental service offers a diverse selection to suit your cycling desires</p>
+                        </div>
+                    </div>
+                </div>z
+                <!-- Project One Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid" src="../static/img/parts.jpeg" alt="..." /></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">Accessories</h4>
+                                    <p class="mb-0 text-white-50"> Enhance your cycling experience with our wide range of top-quality accessories at our bike shop. 
+                                        From helmets and gloves to bike racks and lights, we have everything you need to elevate your safety and convenience on the road. Our expert staff is ready to guide you in choosing the perfect accessories that suit your style and preferences. 
+                                        Browse our collection and gear up for your next adventure with confidence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Two Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.080536701385!2d90.40459547482807!3d23.78014627865009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7715a40c603%3A0xec01cd75f33139f5!2sBRAC%20University!5e0!3m2!1sen!2sbd!4v1687640827027!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white">Flagship Shop</h4>
+                                    <p class="mb-0 text-white-50">Discover our flagship bike shop, a cycling haven with an impressive selection of high-performance bikes. Explore our centrally located showroom, expertly curated with top brands and personalized service, to find the perfect ride that matches your style. Elevate your cycling experience with us today.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <img src="../static/img/running_bike.gif" alt="Animated GIF">
+            </div>
+          </div>
+        
+
+        <!-- Contact-->
+        <section class="contact-section bg-black">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Address</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-envelope text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Email</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Phone</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">+1 (555) 902-8832</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Velocity Ventures</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../static/js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
